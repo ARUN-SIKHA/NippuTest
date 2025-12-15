@@ -1,33 +1,88 @@
+<!-- history.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About NippuKoodi</title>
-<link rel="icon" type="image/png" sizes="32x32" href="logo.png">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NippuKoodi – About</title>
+  <meta name="description" content="Learn about NippuKoodi and how we connect skilled workers with trusted companies." />
+  <link rel="icon" type="image/png" sizes="32x32" href="logo.png" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-  <a id="title" href="index.html">NippuKoodi</a>
-  <nav class="nav-links" aria-label="Main navigation">
-    <a href="index.html">Home</a>
-    <a href="support.html">Contact</a>
-  </nav>
-  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </button>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="NippuKoodi Home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">NippuKoodi</span>
+    </a>
+
+    <nav class="nav-links" id="main-nav" aria-label="Main navigation">
+      <a href="index.html#about">About</a>
+      <a href="index.html#features">Services</a>
+      <a href="index.html#how">How It Works</a>
+      <a href="support.html">Contact</a>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
 
-<main>
-  <h1>About NippuKoodi</h1>
-  <p>NippuKoodi was founded to connect skilled workers with companies in need of reliable staffing. We focus on safety, professionalism, and speed. Our process ensures every worker is background-checked and ready to perform on day one.</p>
-  <p>Our mission is to provide flexible staffing solutions for businesses while creating opportunities for workers seeking reliable employment. We maintain strong partnerships with companies across industries, ensuring the best fit for both the worker and the client.</p>
-  <p>With years of experience in workforce management, our team handles all recruitment, vetting, and placement logistics, so companies can focus on their business while we provide trusted personnel efficiently.</p>
+<main id="main" class="section">
+  <div class="container" style="max-width: 820px;">
+    <h1 class="section-title" style="margin-top: 10px;">About NippuKoodi</h1>
+    <p class="section-lead">
+      NippuKoodi was founded to connect skilled workers with companies in need of reliable staffing.
+      We focus on safety, professionalism, and speed.
+    </p>
 
-  <div class="back-home"><p><a href="index.html">← Back to Home</a></p></div>
+    <div class="card" style="text-align:left; margin-top: 22px;">
+      <h3 style="margin-top:0;">Our mission</h3>
+      <p style="margin:0; color: var(--muted);">
+        We provide flexible staffing solutions for businesses while creating opportunities for workers seeking reliable employment.
+        We maintain strong partnerships across industries, ensuring the best fit for both the worker and the client.
+      </p>
+    </div>
+
+    <div class="card" style="text-align:left; margin-top: 18px;">
+      <h3 style="margin-top:0;">How we work</h3>
+      <p style="margin:0; color: var(--muted);">
+        With years of experience in workforce management, our team handles recruitment, vetting, and placement logistics,
+        so companies can focus on their business while we provide trusted personnel efficiently.
+      </p>
+    </div>
+
+    <div class="center" style="margin-top: 26px;">
+      <a class="btn btn-ghost" style="color: var(--text); border-color: rgba(0,0,0,.12); background: rgba(0,0,0,.03);" href="index.html">← Back to Home</a>
+    </div>
+  </div>
 </main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <div class="brand-mark" aria-hidden="true"></div>
+      <div>
+        <strong>NippuKoodi</strong>
+        <p>Trusted staffing. Real results.</p>
+      </div>
+    </div>
+
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html#about">About</a>
+      <a href="index.html#features">Services</a>
+      <a href="index.html#how">How it works</a>
+      <a href="support.html">Contact</a>
+    </nav>
+
+    <p class="footer-copy">© <span id="year"></span> NippuKoodi. All rights reserved.</p>
+  </div>
+</footer>
 
 <script src="script.js"></script>
 </body>
