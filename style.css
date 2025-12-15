@@ -220,7 +220,7 @@ a:hover{opacity:.92}
   justify-content:center;
   gap:14px;
   color:#fff;
-  padding-top: 35px; /* increase to move higher, decrease to move less */
+  padding-top: 20px; /* increase to move higher, decrease to move less */
 }
 .hero h1{
   font-size: clamp(34px, 5vw, 58px);
