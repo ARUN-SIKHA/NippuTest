@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NippuKoodi – About</title>
-  <meta name="description" content="Learn about NippuKoodi and how we connect skilled workers with trusted companies." />
+  <meta name="description" content="Learn about NippuKoodi and how it connects skilled workers with trusted companies." />
   <link rel="icon" type="image/png" sizes="32x32" href="logo.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -13,18 +13,18 @@
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="site-header">
+<header class="site-header" data-elevate="true">
   <div class="header-inner">
-    <a class="brand" href="index.html" aria-label="NippuKoodi Home">
+    <a class="brand" href="index.html" aria-label="NippuKoodi home">
       <span class="brand-mark" aria-hidden="true"></span>
       <span class="brand-text">NippuKoodi</span>
     </a>
 
     <nav class="nav-links" id="main-nav" aria-label="Main navigation">
       <a href="index.html#about">About</a>
-      <a href="index.html#features">Services</a>
-      <a href="index.html#how">How It Works</a>
-      <a href="support.html">Contact</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#process">How It Works</a>
+      <a href="support.html" class="nav-cta">Contact</a>
     </nav>
 
     <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">
@@ -34,53 +34,64 @@
 </header>
 
 <main id="main" class="section">
-  <div class="container" style="max-width: 820px;">
+  <div class="container" style="max-width: 860px;">
     <h1 class="section-title" style="margin-top: 10px;">About NippuKoodi</h1>
     <p class="section-lead">
-      NippuKoodi was founded to connect skilled workers with companies in need of reliable staffing.
-      We focus on safety, professionalism, and speed.
+      NippuKoodi was founded to connect skilled workers with companies that need reliable staffing.
+      The focus is safety, professionalism, and speed — with workers ready on day one.
     </p>
 
-    <div class="card" style="text-align:left; margin-top: 22px;">
-      <h3 style="margin-top:0;">Our mission</h3>
-      <p style="margin:0; color: var(--muted);">
-        We provide flexible staffing solutions for businesses while creating opportunities for workers seeking reliable employment.
-        We maintain strong partnerships across industries, ensuring the best fit for both the worker and the client.
-      </p>
-    </div>
+    <div class="grid" style="margin-top: 26px;">
+      <article class="card" style="text-align:left;">
+        <h3>Mission</h3>
+        <p>
+          Provide flexible staffing solutions for businesses while creating opportunities for workers seeking reliable employment.
+          Build partnerships across industries to ensure the best fit for both worker and client.
+        </p>
+      </article>
 
-    <div class="card" style="text-align:left; margin-top: 18px;">
-      <h3 style="margin-top:0;">How we work</h3>
-      <p style="margin:0; color: var(--muted);">
-        With years of experience in workforce management, our team handles recruitment, vetting, and placement logistics,
-        so companies can focus on their business while we provide trusted personnel efficiently.
-      </p>
+      <article class="card" style="text-align:left;">
+        <h3>Approach</h3>
+        <p>
+          Handle recruitment, vetting, and placement logistics so companies can focus on operations while trusted personnel are provided efficiently.
+        </p>
+      </article>
+
+      <article class="card" style="text-align:left;">
+        <h3>Commitment</h3>
+        <p>
+          Maintain quality at scale: consistent verification, clear communication, and ongoing support after placement.
+        </p>
+      </article>
     </div>
 
     <div class="center" style="margin-top: 26px;">
-      <a class="btn btn-ghost" style="color: var(--text); border-color: rgba(0,0,0,.12); background: rgba(0,0,0,.03);" href="index.html">← Back to Home</a>
+      <a class="btn" style="background: rgba(2,6,23,.04); border-color: rgba(2,6,23,.10); color: var(--text);" href="index.html">
+        ← Back to Home
+      </a>
     </div>
   </div>
 </main>
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <div class="footer-brand">
-      <div class="brand-mark" aria-hidden="true"></div>
-      <div>
-        <strong>NippuKoodi</strong>
-        <p>Trusted staffing. Real results.</p>
+    <div class="footer-left">
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div>
+          <strong>NippuKoodi</strong>
+          <p>Trusted staffing. Real results.</p>
+        </div>
       </div>
+      <p class="footer-copy">© <span id="year"></span> NippuKoodi. All rights reserved.</p>
     </div>
 
     <nav class="footer-links" aria-label="Footer navigation">
       <a href="index.html#about">About</a>
-      <a href="index.html#features">Services</a>
-      <a href="index.html#how">How it works</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#process">How It Works</a>
       <a href="support.html">Contact</a>
     </nav>
-
-    <p class="footer-copy">© <span id="year"></span> NippuKoodi. All rights reserved.</p>
   </div>
 </footer>
 
