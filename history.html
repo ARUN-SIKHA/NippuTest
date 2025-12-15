@@ -8,7 +8,6 @@
   <meta name="description" content="Learn about NippuKoodi and how it connects skilled workers with trusted companies." />
   <link rel="icon" type="image/png" sizes="32x32" href="logo.png" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
 
@@ -67,14 +66,26 @@
     </div>
 
     <div class="center" style="margin-top: 26px;">
-      <a class="btn btn-solid" href="index.html">← Back to Home</a>
+      <a class="btn" style="background: rgba(2,6,23,.04); border-color: rgba(2,6,23,.10); color: var(--text);" href="index.html">
+        ← Back to Home
+      </a>
     </div>
   </div>
 </main>
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <p class="footer-copy">© <span id="year"></span> NippuKoodi. All rights reserved.</p>
+    <div class="footer-left">
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div>
+          <strong>NippuKoodi</strong>
+          <p>Trusted staffing. Real results.</p>
+        </div>
+      </div>
+      <p class="footer-copy">© <span id="year"></span> NippuKoodi. All rights reserved.</p>
+    </div>
+
     <nav class="footer-links" aria-label="Footer navigation">
       <a href="index.html#about">About</a>
       <a href="index.html#services">Services</a>
