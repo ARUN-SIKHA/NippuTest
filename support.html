@@ -1,135 +1,102 @@
-<!-- support.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NippuKoodi – Contact</title>
-  <meta name="description" content="Contact NippuKoodi to discuss partnerships or join the vetted workforce." />
+  <title>NippuKoodi — Contact</title>
+
+  <!-- KEEP favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="logo.png" />
+
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
 
-<a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="site-header" data-elevate="true">
-  <div class="header-inner">
-    <a class="brand" href="index.html" aria-label="NippuKoodi home">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span class="brand-text">NippuKoodi</span>
-    </a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="NippuKoodi Home">
+        <img class="brand-logo" src="logo.png" alt="NippuKoodi logo" />
+        <span class="brand-text">NippuKoodi</span>
+      </a>
 
-    <nav class="nav-links" id="main-nav" aria-label="Main navigation">
-      <a href="index.html#about">About</a>
-      <a href="index.html#services">Services</a>
-      <a href="index.html#process">How It Works</a>
-      <a href="support.html" class="nav-cta" aria-current="page">Contact</a>
-    </nav>
-
-    <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
-<main id="main" class="section">
-  <div class="container" style="max-width: 860px;">
-    <h1 class="section-title" style="margin-top: 10px;">Contact</h1>
-    <p class="section-lead">
-      Reach out to discuss partnerships or to join the vetted workforce. A response follows with next steps.
-    </p>
-
-    <div class="card" style="margin-top: 26px; text-align:left;">
-      <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <div class="form-grid">
-          <label class="field">
-            <span>Name</span>
-            <input type="text" name="name" placeholder="Your name" required />
-          </label>
-
-          <label class="field">
-            <span>Email</span>
-            <input type="email" name="email" placeholder="you@example.com" required />
-          </label>
-        </div>
-
-        <label class="field">
-          <span>Message</span>
-          <textarea name="message" rows="6" placeholder="How can help be provided?" required></textarea>
-        </label>
-
-        <button class="btn btn-primary" type="submit">
-          Send Message
-          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+      <div class="nav-wrap">
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle menu">
+          <span class="nav-toggle-bars"></span>
         </button>
 
-        <p class="form-note">By sending, contact back may happen via email.</p>
-      </form>
-    </div>
-
-    <div class="center" style="margin-top: 26px;">
-      <a class="btn" style="background: rgba(2,6,23,.04); border-color: rgba(2,6,23,.10); color: var(--text);" href="index.html">
-        ← Back to Home
-      </a>
-    </div>
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-left">
-      <div class="footer-brand">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <div>
-          <strong>NippuKoodi</strong>
-          <p>Trusted staffing. Real results.</p>
-        </div>
+        <nav class="nav" id="siteNav" aria-label="Main navigation">
+          <a href="index.html#about">About</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#how">How It Works</a>
+          <a href="index.html#testimonials">Testimonials</a>
+          <a href="index.html#contact">Contact</a>
+          <a class="nav-cta" href="support.html" aria-current="page">Contact Page</a>
+        </nav>
       </div>
-      <p class="footer-copy">© <span id="year"></span> NippuKoodi. All rights reserved.</p>
     </div>
+  </header>
 
-    <nav class="footer-links" aria-label="Footer navigation">
-      <a href="index.html#about">About</a>
-      <a href="index.html#services">Services</a>
-      <a href="index.html#process">How It Works</a>
-      <a href="support.html" aria-current="page">Contact</a>
-    </nav>
-  </div>
-</footer>
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <h1>Contact</h1>
+        <p>
+          Reach out to discuss partnerships or to join the vetted workforce. A response follows with next steps.
+        </p>
+      </div>
+    </section>
 
-<!-- Form styling -->
-<style>
-  .contact-form{display:flex; flex-direction:column; gap:14px;}
-  .form-grid{display:grid; grid-template-columns: 1fr 1fr; gap:14px;}
-  .field{display:flex; flex-direction:column; gap:6px;}
-  .field span{font-weight: 900; font-size:.92rem; color: var(--text);}
-  input, textarea{
-    width:100%;
-    padding: 12px 12px;
-    border-radius: 14px;
-    border: 1px solid rgba(2,6,23,.14);
-    background: rgba(255,255,255,.95);
-    font: inherit;
-    outline:none;
-  }
-  input:focus, textarea:focus{
-    border-color: rgba(0,119,204,.55);
-    box-shadow: 0 0 0 4px var(--ring);
-  }
-  .form-note{margin: 8px 0 0; color: var(--muted); font-weight: 800; font-size:.92rem;}
-  @media (max-width: 620px){ .form-grid{grid-template-columns:1fr;} }
-</style>
+    <section class="section section-muted">
+      <div class="container">
+        <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-row">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+          </div>
 
-<script src="script.js"></script>
-<script>
-  // Contact page uses icons (Font Awesome) if loaded on index; load here too:
-  (function(){
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
-    document.head.appendChild(link);
-  })();
-</script>
+          <div style="margin-top:12px;">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="7" placeholder="How can help be provided?" required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Send Message →</button>
+            <a class="btn btn-ghost" href="index.html">← Back to Home</a>
+          </div>
+
+          <p class="form-note">By sending, contact back may happen via email.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> NippuKoodi. All rights reserved.</p>
+      <div class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#how">How It Works</a>
+        <a href="index.html#testimonials">Testimonials</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="support.html" aria-current="page">Contact Page</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  <script src="script.js"></script>
 </body>
 </html>
