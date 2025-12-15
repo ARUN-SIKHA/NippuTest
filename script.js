@@ -1,8 +1,18 @@
 // script.js
 (() => {
-  // Footer year
+  // Year
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
+
+  // Header elevation on scroll
+  const header = document.querySelector(".site-header");
+  const elevate = () => {
+    if (!header) return;
+    if (window.scrollY > 8) header.classList.add("elevated");
+    else header.classList.remove("elevated");
+  };
+  elevate();
+  window.addEventListener("scroll", elevate, { passive: true });
 
   // Mobile nav
   const hamburger = document.getElementById("hamburger");
@@ -21,23 +31,28 @@
       hamburger.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
 
-    // Close on link click (mobile)
-    nav.querySelectorAll("a").forEach((a) => {
-      a.addEventListener("click", () => closeMenu());
-    });
+    nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
 
-    // Close on Escape
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeMenu();
     });
 
-    // Close when clicking outside
     document.addEventListener("click", (e) => {
       if (!nav.classList.contains("open")) return;
       const clickedInside = nav.contains(e.target) || hamburger.contains(e.target);
       if (!clickedInside) closeMenu();
     });
   }
+
+  // FAQ accordion
+  document.querySelectorAll(".faq-q").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const expanded = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", expanded ? "false" : "true");
+      const panel = btn.nextElementSibling;
+      if (panel) panel.hidden = expanded ? true : false;
+    });
+  });
 
   // Slideshow (safe, optional)
   const container = document.querySelector("[data-slideshow='true']");
@@ -49,7 +64,7 @@
   if (container && slides.length) {
     let index = 0;
     let timer = null;
-    const intervalMs = 4500;
+    const intervalMs = 5200;
 
     // Build dots
     let dots = [];
@@ -70,12 +85,8 @@
     }
 
     const render = () => {
-      slides.forEach((s, i) => {
-        s.style.display = i === index ? "block" : "none";
-      });
-      if (dots.length) {
-        dots.forEach((d, i) => d.classList.toggle("active", i === index));
-      }
+      slides.forEach((s, i) => (s.style.display = i === index ? "block" : "none"));
+      dots.forEach((d, i) => d.classList.toggle("active", i === index));
     };
 
     const goTo = (i) => {
@@ -90,16 +101,11 @@
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       timer = window.setInterval(next, intervalMs);
     };
-
     const stop = () => {
       if (timer) window.clearInterval(timer);
       timer = null;
     };
-
-    const restart = () => {
-      stop();
-      start();
-    };
+    const restart = () => { stop(); start(); };
 
     render();
     start();
@@ -107,13 +113,11 @@
     if (nextBtn) nextBtn.addEventListener("click", () => { next(); restart(); });
     if (prevBtn) prevBtn.addEventListener("click", () => { prev(); restart(); });
 
-    // Pause on hover/focus for usability
     container.addEventListener("mouseenter", stop);
     container.addEventListener("mouseleave", start);
     container.addEventListener("focusin", stop);
     container.addEventListener("focusout", start);
 
-    // Keyboard arrows when focused
     container.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") { next(); restart(); }
       if (e.key === "ArrowLeft") { prev(); restart(); }
