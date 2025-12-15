@@ -223,7 +223,7 @@ a:hover{opacity:.92}
 }
 
 .hero h1{
-  transform: translateY(-50px); /* Adjust this value to move the content up or down */
+  transform: translateY(-30px); /* Adjust this value to move the content up or down */
 }
 
 
