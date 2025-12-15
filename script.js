@@ -1,4 +1,4 @@
-// script.j
+// script.js
 (() => {
   // Year
   const year = document.getElementById("year");
