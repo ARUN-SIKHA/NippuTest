@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NippuKoodi – Contact</title>
-  <meta name="description" content="Contact NippuKoodi to discuss partnerships or join our vetted workforce." />
+  <meta name="description" content="Contact NippuKoodi to discuss partnerships or join the vetted workforce." />
   <link rel="icon" type="image/png" sizes="32x32" href="logo.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -13,18 +13,18 @@
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="site-header">
+<header class="site-header" data-elevate="true">
   <div class="header-inner">
-    <a class="brand" href="index.html" aria-label="NippuKoodi Home">
+    <a class="brand" href="index.html" aria-label="NippuKoodi home">
       <span class="brand-mark" aria-hidden="true"></span>
       <span class="brand-text">NippuKoodi</span>
     </a>
 
     <nav class="nav-links" id="main-nav" aria-label="Main navigation">
       <a href="index.html#about">About</a>
-      <a href="index.html#features">Services</a>
-      <a href="index.html#how">How It Works</a>
-      <a href="support.html" aria-current="page">Contact</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#process">How It Works</a>
+      <a href="support.html" class="nav-cta" aria-current="page">Contact</a>
     </nav>
 
     <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">
@@ -34,18 +34,18 @@
 </header>
 
 <main id="main" class="section">
-  <div class="container" style="max-width: 820px;">
-    <h1 class="section-title" style="margin-top: 10px;">Contact Us</h1>
+  <div class="container" style="max-width: 860px;">
+    <h1 class="section-title" style="margin-top: 10px;">Contact</h1>
     <p class="section-lead">
-      Reach out to discuss partnership opportunities or for workers interested in joining our vetted workforce.
+      Reach out to discuss partnerships or to join the vetted workforce. A response follows with next steps.
     </p>
 
-    <div class="card" style="margin-top: 24px;">
+    <div class="card" style="margin-top: 26px; text-align:left;">
       <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
         <div class="form-grid">
           <label class="field">
             <span>Name</span>
-            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="text" name="name" placeholder="Your name" required />
           </label>
 
           <label class="field">
@@ -56,55 +56,60 @@
 
         <label class="field">
           <span>Message</span>
-          <textarea name="message" placeholder="How can we help?" rows="5" required></textarea>
+          <textarea name="message" rows="6" placeholder="How can help be provided?" required></textarea>
         </label>
 
-        <button class="btn btn-primary" type="submit">Send Message</button>
-        <p class="form-note">By sending, you agree to be contacted back by email.</p>
+        <button class="btn btn-primary" type="submit">
+          Send Message
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </button>
+
+        <p class="form-note">By sending, contact back may happen via email.</p>
       </form>
     </div>
 
     <div class="center" style="margin-top: 26px;">
-      <a class="btn btn-ghost" style="color: var(--text); border-color: rgba(0,0,0,.12); background: rgba(0,0,0,.03);" href="index.html">← Back to Home</a>
+      <a class="btn" style="background: rgba(2,6,23,.04); border-color: rgba(2,6,23,.10); color: var(--text);" href="index.html">
+        ← Back to Home
+      </a>
     </div>
   </div>
 </main>
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <div class="footer-brand">
-      <div class="brand-mark" aria-hidden="true"></div>
-      <div>
-        <strong>NippuKoodi</strong>
-        <p>Trusted staffing. Real results.</p>
+    <div class="footer-left">
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div>
+          <strong>NippuKoodi</strong>
+          <p>Trusted staffing. Real results.</p>
+        </div>
       </div>
+      <p class="footer-copy">© <span id="year"></span> NippuKoodi. All rights reserved.</p>
     </div>
 
     <nav class="footer-links" aria-label="Footer navigation">
       <a href="index.html#about">About</a>
-      <a href="index.html#features">Services</a>
-      <a href="index.html#how">How it works</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#process">How It Works</a>
       <a href="support.html" aria-current="page">Contact</a>
     </nav>
-
-    <p class="footer-copy">© <span id="year"></span> NippuKoodi. All rights reserved.</p>
   </div>
 </footer>
 
-<script src="script.js"></script>
-
+<!-- Form styling -->
 <style>
-  /* Support-only form polish (keeps single CSS file clean) */
   .contact-form{display:flex; flex-direction:column; gap:14px;}
   .form-grid{display:grid; grid-template-columns: 1fr 1fr; gap:14px;}
-  .field{display:flex; flex-direction:column; gap:6px; text-align:left;}
-  .field span{font-weight:800; font-size:.92rem; color: var(--text);}
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field span{font-weight: 900; font-size:.92rem; color: var(--text);}
   input, textarea{
     width:100%;
-    padding:12px 12px;
-    border-radius:12px;
-    border:1px solid rgba(0,0,0,.14);
-    background:#fff;
+    padding: 12px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(2,6,23,.14);
+    background: rgba(255,255,255,.95);
     font: inherit;
     outline:none;
   }
@@ -112,11 +117,19 @@
     border-color: rgba(0,119,204,.55);
     box-shadow: 0 0 0 4px var(--ring);
   }
-  .form-note{margin:8px 0 0; color: var(--muted); font-size:.92rem;}
-  @media (max-width: 560px){
-    .form-grid{grid-template-columns: 1fr;}
-  }
+  .form-note{margin: 8px 0 0; color: var(--muted); font-weight: 800; font-size:.92rem;}
+  @media (max-width: 620px){ .form-grid{grid-template-columns:1fr;} }
 </style>
 
+<script src="script.js"></script>
+<script>
+  // Contact page uses icons (Font Awesome) if loaded on index; load here too:
+  (function(){
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+    document.head.appendChild(link);
+  })();
+</script>
 </body>
 </html>
