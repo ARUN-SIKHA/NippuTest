@@ -1,129 +1,79 @@
-// script.js
 (() => {
-  // Year
-  const year = document.getElementById("year");
-  if (year) year.textContent = new Date().getFullYear();
+  "use strict";
 
-  // Header elevation on scroll
-  const header = document.querySelector(".site-header");
-  const elevate = () => {
-    if (!header) return;
-    if (window.scrollY > 8) header.classList.add("elevated");
-    else header.classList.remove("elevated");
-  };
-  elevate();
-  window.addEventListener("scroll", elevate, { passive: true });
+  // Always set footer year (safe, never hides page)
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   // Mobile nav
-  const hamburger = document.getElementById("hamburger");
-  const nav = document.getElementById("main-nav");
-
-  if (hamburger && nav) {
-    const closeMenu = () => {
-      nav.classList.remove("open");
-      hamburger.classList.remove("open");
-      hamburger.setAttribute("aria-expanded", "false");
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.querySelector(".nav");
+  if (toggle && nav) {
+    const setOpen = (open) => {
+      nav.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     };
 
-    hamburger.addEventListener("click", () => {
-      const isOpen = nav.classList.toggle("open");
-      hamburger.classList.toggle("open");
-      hamburger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    toggle.addEventListener("click", () => setOpen(!nav.classList.contains("is-open")));
+
+    // Close on link click (mobile)
+    nav.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => setOpen(false));
     });
 
-    nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeMenu();
-    });
-
+    // Close on outside click
     document.addEventListener("click", (e) => {
-      if (!nav.classList.contains("open")) return;
-      const clickedInside = nav.contains(e.target) || hamburger.contains(e.target);
-      if (!clickedInside) closeMenu();
+      if (!nav.classList.contains("is-open")) return;
+      const target = e.target;
+      if (target instanceof Node && !nav.contains(target) && !toggle.contains(target)) {
+        setOpen(false);
+      }
+    });
+
+    // Close on escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
     });
   }
 
-  // FAQ accordion
-  document.querySelectorAll(".faq-q").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const expanded = btn.getAttribute("aria-expanded") === "true";
-      btn.setAttribute("aria-expanded", expanded ? "false" : "true");
-      const panel = btn.nextElementSibling;
-      if (panel) panel.hidden = expanded ? true : false;
+  // Smooth slideshow fade (no harsh transitions)
+  const slides = Array.from(document.querySelectorAll(".hero-slide"));
+  if (!slides.length) return;
+
+  // Make sure at least one slide is active
+  let index = slides.findIndex((s) => s.classList.contains("is-active"));
+  if (index < 0) {
+    index = 0;
+    slides[0].classList.add("is-active");
+  }
+
+  // Support mixed extensions: if an image fails to load, it won't break the page
+  slides.forEach((slide) => {
+    const img = slide.querySelector("img");
+    if (!img) return;
+    img.addEventListener("error", () => {
+      // If an image fails, hide that slide to avoid blank flashes
+      slide.style.display = "none";
     });
   });
 
-  // Smooth slideshow (fade)
-  const container = document.querySelector("[data-slideshow='true']");
-  const slides = container ? Array.from(container.querySelectorAll(".slide")) : [];
-  const dotsWrap = container ? container.querySelector("[data-dots='true']") : null;
-  const prevBtn = container ? container.querySelector("[data-slide='prev']") : null;
-  const nextBtn = container ? container.querySelector("[data-slide='next']") : null;
+  const INTERVAL_MS = 4500;
 
-  if (container && slides.length) {
-    let index = 0;
-    let timer = null;
-    const intervalMs = 5200;
-
-    // Ensure first slide is active immediately
-    slides.forEach((s, i) => s.classList.toggle("active", i === 0));
-
-    // Build dots
-    let dots = [];
-    if (dotsWrap) {
-      dotsWrap.innerHTML = "";
-      dots = slides.map((_, i) => {
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "dot";
-        b.setAttribute("aria-label", `Go to slide ${i + 1}`);
-        b.addEventListener("click", () => {
-          goTo(i);
-          restart();
-        });
-        dotsWrap.appendChild(b);
-        return b;
-      });
+  setInterval(() => {
+    const current = slides[index];
+    // Find next available slide (skip ones hidden due to load error)
+    let nextIndex = index;
+    for (let i = 0; i < slides.length; i++) {
+      nextIndex = (nextIndex + 1) % slides.length;
+      if (slides[nextIndex].style.display !== "none") break;
     }
 
-    const render = () => {
-      slides.forEach((s, i) => s.classList.toggle("active", i === index));
-      if (dots.length) dots.forEach((d, i) => d.classList.toggle("active", i === index));
-    };
+    const next = slides[nextIndex];
+    if (!next || next === current) return;
 
-    const goTo = (i) => {
-      index = (i + slides.length) % slides.length;
-      render();
-    };
-
-    const next = () => goTo(index + 1);
-    const prev = () => goTo(index - 1);
-
-    const start = () => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      timer = window.setInterval(next, intervalMs);
-    };
-    const stop = () => {
-      if (timer) window.clearInterval(timer);
-      timer = null;
-    };
-    const restart = () => { stop(); start(); };
-
-    render();
-    start();
-
-    if (nextBtn) nextBtn.addEventListener("click", () => { next(); restart(); });
-    if (prevBtn) prevBtn.addEventListener("click", () => { prev(); restart(); });
-
-    container.addEventListener("mouseenter", stop);
-    container.addEventListener("mouseleave", start);
-    container.addEventListener("focusin", stop);
-    container.addEventListener("focusout", start);
-
-    container.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") { next(); restart(); }
-      if (e.key === "ArrowLeft") { prev(); restart(); }
-    });
-  }
+    current.classList.remove("is-active");
+    next.classList.add("is-active");
+    index = nextIndex;
+  }, INTERVAL_MS);
 })();
