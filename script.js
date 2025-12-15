@@ -1,7 +1,7 @@
 // script.js
 (() => {
   // Year
-  const yea = document.getElementById("year");
+  const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
   // Header elevation on scroll
