@@ -11,7 +11,7 @@
     if (window.scrollY > 8) header.classList.add("elevated");
     else header.classList.remove("elevated");
   };
-  eevate();
+  elevate();
   window.addEventListener("scroll", elevate, { passive: true });
 
   // Mobile nav
