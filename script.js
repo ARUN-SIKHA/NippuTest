@@ -54,7 +54,7 @@
     });
   });
 
-  // Slideshow (safe, optional)
+  // Smooth slideshow (fade)
   const container = document.querySelector("[data-slideshow='true']");
   const slides = container ? Array.from(container.querySelectorAll(".slide")) : [];
   const dotsWrap = container ? container.querySelector("[data-dots='true']") : null;
@@ -65,6 +65,9 @@
     let index = 0;
     let timer = null;
     const intervalMs = 5200;
+
+    // Ensure first slide is active immediately
+    slides.forEach((s, i) => s.classList.toggle("active", i === 0));
 
     // Build dots
     let dots = [];
@@ -85,8 +88,8 @@
     }
 
     const render = () => {
-      slides.forEach((s, i) => (s.style.display = i === index ? "block" : "none"));
-      dots.forEach((d, i) => d.classList.toggle("active", i === index));
+      slides.forEach((s, i) => s.classList.toggle("active", i === index));
+      if (dots.length) dots.forEach((d, i) => d.classList.toggle("active", i === index));
     };
 
     const goTo = (i) => {
