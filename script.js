@@ -1,79 +1,91 @@
-(() => {
-  "use strict";
+(function () {
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  // Always set footer year (safe, never hides page)
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+  function initNav() {
+    const toggle = $("#navToggle");
+    const nav = $("#siteNav");
+    if (!toggle || !nav) return;
 
-  // Mobile nav
-  const toggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector(".nav");
-  if (toggle && nav) {
     const setOpen = (open) => {
       nav.classList.toggle("is-open", open);
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     };
 
     toggle.addEventListener("click", () => setOpen(!nav.classList.contains("is-open")));
 
     // Close on link click (mobile)
-    nav.querySelectorAll("a").forEach((a) => {
+    $$("#siteNav a").forEach((a) => {
       a.addEventListener("click", () => setOpen(false));
     });
 
-    // Close on outside click
+    // Close if clicking outside
     document.addEventListener("click", (e) => {
       if (!nav.classList.contains("is-open")) return;
-      const target = e.target;
-      if (target instanceof Node && !nav.contains(target) && !toggle.contains(target)) {
-        setOpen(false);
-      }
+      const within = nav.contains(e.target) || toggle.contains(e.target);
+      if (!within) setOpen(false);
     });
 
-    // Close on escape
+    // Close on ESC
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") setOpen(false);
     });
   }
 
-  // Smooth slideshow fade (no harsh transitions)
-  const slides = Array.from(document.querySelectorAll(".hero-slide"));
-  if (!slides.length) return;
-
-  // Make sure at least one slide is active
-  let index = slides.findIndex((s) => s.classList.contains("is-active"));
-  if (index < 0) {
-    index = 0;
-    slides[0].classList.add("is-active");
+  function preloadImages(urls) {
+    return Promise.all(
+      urls.map(
+        (url) =>
+          new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve({ url, ok: true });
+            img.onerror = () => resolve({ url, ok: false });
+            img.src = url;
+          })
+      )
+    );
   }
 
-  // Support mixed extensions: if an image fails to load, it won't break the page
-  slides.forEach((slide) => {
-    const img = slide.querySelector("img");
-    if (!img) return;
-    img.addEventListener("error", () => {
-      // If an image fails, hide that slide to avoid blank flashes
-      slide.style.display = "none";
-    });
-  });
+  function initHeroSlider() {
+    const slides = $$(".hero-slide");
+    if (!slides.length) return;
 
-  const INTERVAL_MS = 4500;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  setInterval(() => {
-    const current = slides[index];
-    // Find next available slide (skip ones hidden due to load error)
-    let nextIndex = index;
-    for (let i = 0; i < slides.length; i++) {
-      nextIndex = (nextIndex + 1) % slides.length;
-      if (slides[nextIndex].style.display !== "none") break;
+    // Fix slide1 accidentally being the logo by using slide1.jpg + fallback to slide2.jpg.
+    // If slide1.jpg doesn't exist, it will fall back (and NOT show logo.png).
+    const slide1 = $("#slide1img");
+    if (slide1) {
+      slide1.addEventListener("error", () => {
+        const fallback = slide1.getAttribute("data-fallback");
+        if (fallback && slide1.src.indexOf(fallback) === -1) slide1.src = fallback;
+      }, { once: true });
     }
 
-    const next = slides[nextIndex];
-    if (!next || next === current) return;
+    const imgs = slides
+      .map((s) => $("img", s))
+      .filter(Boolean)
+      .map((img) => img.getAttribute("src"));
 
-    current.classList.remove("is-active");
-    next.classList.add("is-active");
-    index = nextIndex;
-  }, INTERVAL_MS);
+    // Preload, then start
+    preloadImages(imgs).finally(() => {
+      let index = 0;
+      slides.forEach((s, i) => s.classList.toggle("is-active", i === 0));
+
+      if (reduceMotion) return; // no autoplay for reduced motion
+
+      const intervalMs = 4500;
+
+      setInterval(() => {
+        slides[index].classList.remove("is-active");
+        index = (index + 1) % slides.length;
+        slides[index].classList.add("is-active");
+      }, intervalMs);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    initNav();
+    initHeroSlider();
+  });
 })();
