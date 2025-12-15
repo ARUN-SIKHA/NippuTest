@@ -9,6 +9,7 @@
 
     const setOpen = (open) => {
       nav.classList.toggle("is-open", open);
+      toggle.classList.toggle("is-open", open); // ✅ triggers hamburger -> X animation
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
     };
 
@@ -56,10 +57,14 @@
     // If slide1.jpg doesn't exist, it will fall back (and NOT show logo.png).
     const slide1 = $("#slide1img");
     if (slide1) {
-      slide1.addEventListener("error", () => {
-        const fallback = slide1.getAttribute("data-fallback");
-        if (fallback && slide1.src.indexOf(fallback) === -1) slide1.src = fallback;
-      }, { once: true });
+      slide1.addEventListener(
+        "error",
+        () => {
+          const fallback = slide1.getAttribute("data-fallback");
+          if (fallback && slide1.src.indexOf(fallback) === -1) slide1.src = fallback;
+        },
+        { once: true }
+      );
     }
 
     const imgs = slides
