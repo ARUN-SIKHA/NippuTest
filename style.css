@@ -485,3 +485,10 @@ hr.sep{
   .hero-slide{transition:none}
   .btn{transition:none}
 }
+
+/* Move only the hero title up */
+.hero .hero-content h1{
+  position: relative;
+  top: -18px; /* more negative = higher */
+}
+
