@@ -222,16 +222,13 @@ a:hover{opacity:.92}
   color:#fff;
 }
 
-.hero h1{
-  transform: translateY(-20px); /* Adjust this value to move the content up or down */
-}
-
 
 .hero h1{
   font-size: clamp(34px, 5vw, 58px);
   line-height:1.05;
   margin:0;
   text-shadow: 0 10px 35px rgba(0,0,0,.35);
+  transform: translateY(-20px); /* Adjust this value to move the content up or down */
 }
 .hero p{
   margin:0;
