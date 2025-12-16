@@ -489,6 +489,6 @@ hr.sep{
 /* Move only the hero title up */
 .hero .hero-content h1{
   position: relative;
-  top: -18px; /* more negative = higher */
+  top: -12px; /* more negative = higher */
 }
 
